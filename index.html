@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rajendra Kumar | Teacher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,600;0,700;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></script>
+<style>
+  :root{
+    --olive: #5f8a63;
+    --olive-dark: #3f5f45;
+    --cream: #f7f5ef;
+    --paper: #ffffff;
+    --ink: #262622;
+    --ink-soft: #5a5a54;
+    --gold: #b98b3e;
+    --line: #dcdccd;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'IBM Plex Sans', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  h1,h2,h3, .display{ font-family:'Fraunces', serif; }
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+  }
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(247,245,239,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-wrap{
+    max-width:1100px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .nav-name{ font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem; color:var(--olive-dark); }
+  .nav-links{ display:flex; gap:28px; list-style:none; }
+  .nav-links a{
+    text-decoration:none; color:var(--ink); font-size:0.88rem; font-weight:500;
+    letter-spacing:0.02em; position:relative;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:-4px; width:0; height:2px;
+    background:var(--gold); transition:width .25s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{
+    background:var(--olive); color:#fff; padding:9px 18px; border-radius:2px;
+    text-decoration:none; font-size:0.85rem; font-weight:600;
+  }
+  .menu-btn{ display:none; background:none; border:none; font-size:1.3rem; color:var(--olive-dark); cursor:pointer; }
+
+  /* HERO */
+  .hero{
+    background: linear-gradient(120deg, var(--olive) 0%, var(--olive-dark) 100%);
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image: radial-gradient(circle at 85% 20%, rgba(255,255,255,0.08), transparent 45%);
+  }
+  .hero-wrap{
+    max-width:1100px; margin:0 auto; padding:80px 24px 64px;
+    display:grid; grid-template-columns:220px 1fr; gap:48px; align-items:center;
+    position:relative; z-index:2;
+  }
+  .portrait{
+    width:220px; height:220px; border-radius:6px;
+    background:#eae6da;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.28);
+    border:4px solid rgba(255,255,255,0.85);
+    overflow:hidden;
+  }
+  .portrait svg{ width:100%; height:100%; }
+  .hero h1{ font-size:3rem; font-weight:700; line-height:1.05; letter-spacing:-0.01em; }
+  .hero .role{ font-family:'Fraunces', serif; font-weight:300; font-size:1.4rem; letter-spacing:0.04em; color:#e7e6d8; margin-top:6px; }
+  .hero-tags{ display:flex; gap:10px; flex-wrap:wrap; margin-top:22px; }
+  .hero-tag{
+    border:1px solid rgba(255,255,255,0.35); padding:6px 14px; border-radius:999px;
+    font-size:0.78rem; letter-spacing:0.03em;
+  }
+  .hero-cta{ display:flex; gap:14px; margin-top:28px; flex-wrap:wrap; }
+  .btn-primary{
+    background:var(--gold); color:#fff; padding:12px 24px; border-radius:2px;
+    text-decoration:none; font-weight:600; font-size:0.9rem; letter-spacing:0.02em;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,0.25); }
+  .btn-ghost{
+    border:1px solid rgba(255,255,255,0.55); color:#fff; padding:12px 24px; border-radius:2px;
+    text-decoration:none; font-weight:600; font-size:0.9rem; display:inline-flex; align-items:center; gap:8px;
+  }
+
+  /* SECTION GENERIC */
+  section{ padding:72px 24px; }
+  .section-inner{ max-width:1100px; margin:0 auto; }
+  .section-head{ margin-bottom:36px; }
+  .section-head h2{ font-size:2rem; color:var(--olive-dark); font-weight:600; margin-top:6px; }
+  .section-head p{ color:var(--ink-soft); margin-top:10px; max-width:640px; }
+
+  /* PROFILE / ABOUT */
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+  .about-grid p{ color:var(--ink-soft); font-size:1.02rem; }
+  .stat-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:28px; }
+  .stat{ border-left:3px solid var(--gold); padding-left:14px; }
+  .stat .num{ font-family:'Fraunces', serif; font-size:1.9rem; font-weight:700; color:var(--olive-dark); }
+  .stat .label{ font-size:0.78rem; color:var(--ink-soft); letter-spacing:0.03em; text-transform:uppercase; }
+
+  /* SKILLS */
+  .skills-section{ background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .skills-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:16px; }
+  .skill-card{
+    background:var(--cream); border:1px solid var(--line); border-radius:4px;
+    padding:22px 16px; text-align:center;
+  }
+  .skill-card i{ font-size:1.4rem; color:var(--olive); margin-bottom:10px; }
+  .skill-card span{ font-size:0.88rem; font-weight:600; display:block; }
+
+  /* EDUCATION + EXPERIENCE TIMELINE */
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:56px; }
+  .timeline{ position:relative; padding-left:26px; }
+  .timeline::before{
+    content:''; position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:var(--line);
+  }
+  .t-item{ position:relative; margin-bottom:30px; }
+  .t-item:last-child{ margin-bottom:0; }
+  .t-item::before{
+    content:''; position:absolute; left:-26px; top:4px; width:12px; height:12px; border-radius:50%;
+    background:var(--olive); border:3px solid var(--cream); box-shadow:0 0 0 2px var(--olive);
+  }
+  .t-item h3{ font-size:1.08rem; color:var(--ink); font-weight:600; }
+  .t-item .t-sub{ color:var(--gold); font-size:0.85rem; font-weight:600; margin-top:2px; }
+  .t-item .t-place{ color:var(--ink-soft); font-size:0.92rem; margin-top:4px; }
+
+  /* CONTACT */
+  .contact-section{
+    background: var(--olive-dark);
+    color:#fff;
+  }
+  .contact-section .eyebrow{ color:#d8cf9a; }
+  .contact-section .section-head h2{ color:#fff; }
+  .contact-section .section-head p{ color:#d9dcd2; }
+  .contact-grid{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:48px; }
+  .contact-info-item{ display:flex; gap:14px; align-items:flex-start; margin-bottom:22px; }
+  .contact-info-item i{
+    width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,0.12);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold);
+  }
+  .contact-info-item h4{ font-size:0.95rem; font-weight:600; }
+  .contact-info-item p, .contact-info-item a{ color:#d9dcd2; text-decoration:none; font-size:0.92rem; }
+  .contact-info-item a:hover{ color:#fff; }
+
+  form{ background:#fff; border-radius:6px; padding:32px; color:var(--ink); }
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+  label{ font-size:0.78rem; font-weight:600; letter-spacing:0.03em; text-transform:uppercase; color:var(--ink-soft); display:block; margin-bottom:6px; }
+  input, textarea{
+    width:100%; border:1px solid var(--line); border-radius:3px; padding:11px 12px;
+    font-family:inherit; font-size:0.92rem; background:var(--cream); color:var(--ink);
+  }
+  input:focus, textarea:focus{ outline:2px solid var(--olive); outline-offset:1px; }
+  textarea{ resize:vertical; min-height:100px; }
+  .submit-btn{
+    background:var(--olive); color:#fff; border:none; padding:13px 26px; border-radius:3px;
+    font-weight:600; font-size:0.92rem; cursor:pointer; width:100%; margin-top:6px;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    transition:background .2s ease;
+  }
+  .submit-btn:hover{ background:var(--olive-dark); }
+  .form-note{ font-size:0.78rem; color:var(--ink-soft); margin-top:10px; text-align:center; }
+
+  footer{
+    background:var(--ink); color:#a8a89e; text-align:center; padding:22px; font-size:0.82rem;
+  }
+  footer span{ color:var(--gold); }
+
+  /* WHATSAPP FLOAT */
+  .wa-float{
+    position:fixed; bottom:24px; right:24px; z-index:60;
+    background:#25D366; color:#fff; width:56px; height:56px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:1.5rem;
+    box-shadow:0 8px 22px rgba(0,0,0,0.3); text-decoration:none;
+    animation: pulse 2.4s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(37,211,102,0.5); }
+    70%{ box-shadow:0 0 0 14px rgba(37,211,102,0); }
+    100%{ box-shadow:0 0 0 0 rgba(37,211,102,0); }
+  }
+
+  @media(max-width:840px){
+    .nav-links, .nav-cta{ display:none; }
+    .menu-btn{ display:block; }
+    .hero-wrap{ grid-template-columns:1fr; text-align:center; padding-top:56px; }
+    .portrait{ margin:0 auto; width:170px; height:170px; }
+    .hero h1{ font-size:2.2rem; }
+    .hero-cta, .hero-tags{ justify-content:center; }
+    .about-grid, .two-col, .contact-grid{ grid-template-columns:1fr; }
+    .skills-grid{ grid-template-columns:repeat(2,1fr); }
+    .form-row{ grid-template-columns:1fr; }
+    .stat-row{ grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-wrap">
+    <div class="nav-name">Rajendra Kumar</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Hire Me</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-wrap">
+    <div class="portrait">
+      <img src="https://i.ibb.co/gF7XNvMw/IMG-20260721-170400.jpg" alt="Rajendra Kumar" style="width:100%; height:100%; object-fit:cover;">
+    </div>
+    <div>
+      <p class="eyebrow" style="color:#e9d9a8;">Educator &middot; Prayagraj, India</p>
+      <h1>Rajendra Kumar</h1>
+      <p class="role">Teacher</p>
+      <div class="hero-tags">
+        <span class="hero-tag">16+ Years Experience</span>
+        <span class="hero-tag">B.A. Ancient History</span>
+        <span class="hero-tag">Post-Grad English Literature</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary"><i class="fa-solid fa-envelope"></i> Get in Touch</a>
+        <a href="tel:+919919126364" class="btn-ghost"><i class="fa-solid fa-phone"></i> +91 9919126364</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner about-grid">
+    <div>
+      <p class="eyebrow">Profile Summary</p>
+      <h2>Dedicated to student-focused learning</h2>
+      <div class="stat-row">
+        <div class="stat"><div class="num">16+</div><div class="label">Years Teaching</div></div>
+        <div class="stat"><div class="num">2</div><div class="label">Degrees Held</div></div>
+        <div class="stat"><div class="num">2</div><div class="label">Institutions Served</div></div>
+      </div>
+    </div>
+    <div>
+      <p>Passionate educator with 16+ years of teaching experience, specialising in effective lesson planning, curriculum development, and student-focused learning.</p>
+      <p style="margin-top:14px;">Dedicated to delivering quality education through clear explanations, creative teaching methods, and personalised guidance &mdash; helping students excel academically at every stage of their learning journey.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-section">
+  <div class="section-inner">
+    <div class="section-head">
+      <p class="eyebrow">What I Bring</p>
+      <h2>Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card"><i class="fa-solid fa-chalkboard"></i><span>Teaching Planning</span></div>
+      <div class="skill-card"><i class="fa-solid fa-lightbulb"></i><span>Learning Creativity</span></div>
+      <div class="skill-card"><i class="fa-solid fa-layer-group"></i><span>Curriculum Design</span></div>
+      <div class="skill-card"><i class="fa-solid fa-user-check"></i><span>Individual Approach</span></div>
+      <div class="skill-card"><i class="fa-solid fa-magnifying-glass"></i><span>Detailed Explanation</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION + EXPERIENCE -->
+<section id="education">
+  <div class="section-inner two-col">
+    <div>
+      <div class="section-head">
+        <p class="eyebrow">Academic Background</p>
+        <h2>Education</h2>
+      </div>
+      <div class="timeline">
+        <div class="t-item">
+          <h3>Intermediate (Class 12th) &ndash; Science Stream</h3>
+          <div class="t-place">State Board, Prayagraj</div>
+        </div>
+        <div class="t-item">
+          <h3>Graduation B.A. (Ancient History)</h3>
+          <div class="t-place">University of Allahabad, Prayagraj</div>
+        </div>
+        <div class="t-item">
+          <h3>Post-Graduation (English Literature)</h3>
+          <div class="t-place">Chhatrapati Sahu Ji Maharaj University, Kanpur</div>
+        </div>
+      </div>
+    </div>
+    <div id="experience">
+      <div class="section-head">
+        <p class="eyebrow">Career Journey</p>
+        <h2>Work Experience</h2>
+      </div>
+      <div class="timeline">
+        <div class="t-item">
+          <h3>Currently Teaching At</h3>
+          <div class="t-sub">Present</div>
+          <div class="t-place">K.Y. Public School and College, Rahimapur, Jhusi, Prayagraj</div>
+        </div>
+        <div class="t-item">
+          <h3>Previously Worked At</h3>
+          <div class="t-sub">16&ndash;20 Years Total Experience</div>
+          <div class="t-place">Chhatrapati Shivaji Degree College, Sahson</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="section-inner">
+    <div class="section-head">
+      <p class="eyebrow">Let's Connect</p>
+      <h2>Contact Me</h2>
+      <p>Wishing to work and grow with you :-) Reach out for teaching opportunities, tuitions, or collaborations.</p>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info-item">
+          <i class="fa-solid fa-phone"></i>
+          <div>
+            <h4>Phone</h4>
+            <a href="tel:+919919126364">+91 9919126364</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <i class="fa-solid fa-envelope"></i>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:vishwakarmarajaaa@gmail.com">vishwakarmarajaaa@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>
+            <h4>Location</h4>
+            <p>Prayagraj, Uttar Pradesh, India</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <i class="fa-brands fa-whatsapp"></i>
+          <div>
+            <h4>WhatsApp</h4>
+            <a href="https://wa.me/919919126364" target="_blank" rel="noopener">Message directly</a>
+          </div>
+        </div>
+      </div>
+
+      <form id="contactForm">
+        <div class="form-row">
+          <div>
+            <label for="name">Your Name</label>
+            <input type="text" id="name" required placeholder="Full name">
+          </div>
+          <div>
+            <label for="phone">Your Phone</label>
+            <input type="tel" id="phone" required placeholder="10-digit number">
+          </div>
+        </div>
+        <div style="margin-bottom:14px;">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" placeholder="you@example.com">
+        </div>
+        <div style="margin-bottom:14px;">
+          <label for="message">Message</label>
+          <textarea id="message" required placeholder="Tell me about the opportunity or query..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn"><i class="fa-brands fa-whatsapp"></i> Send via WhatsApp</button>
+        <p class="form-note">Clicking send opens WhatsApp with your message pre-filled &mdash; no data is stored.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; <span id="year"></span> <span>Rajendra Kumar</span> &mdash; Teacher, Prayagraj. All rights reserved.
+</footer>
+
+<a href="https://wa.me/919919126364" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    let text = `Hello Rajendra Sir, I would like to connect.%0A%0A`;
+    text += `Name: ${name}%0A`;
+    text += `Phone: ${phone}%0A`;
+    if(email) text += `Email: ${email}%0A`;
+    text += `Message: ${message}`;
+
+    window.open(`https://wa.me/919919126364?text=${text}`, '_blank');
+  });
+</script>
+
+</body>
+        </html>
+        
